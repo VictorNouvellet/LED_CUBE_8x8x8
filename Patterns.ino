@@ -22,6 +22,78 @@ void allTest(int milli){
   }
 }
 
+/**
+* @author Touzard Loïc loic.touzard@gmail.com
+*
+* Fill a "layer" with a spiral by default the x = 0 layer, y and z may change to draw the spiral
+* The draw start at point (0,0,0) then iterate over +y, +z, -y, -z
+*
+* Algorithm : The spiral is drawn by drawing squares' borders.
+*   Starting with a 8-width square (the outer one), drawing its border
+*   Then drawing the inner 6-width square's border (8 minus 2 from the border)
+*   And so forth ...
+*/
+void spiralTest(int milli){
+  // TODO : Are the corner displayed twice ? Think about it. Later... :D. Sure they do x)
+
+  int startPoint = 0; // spiral will start at (0,0,0)
+  
+  // firstly, initialyze the z, y and x coordonates
+  int x = startPoint,  // Will be the fixed one
+      y = startPoint,  // Varying
+      z = startPoint,  // Varying
+      squareSize = LEDS_PER_ROW; // Size of the outer square
+
+  // Let's draw the current Square's border
+  for (; squareSize > 1; squareSize-2)
+  {
+    // draw the first side of the border
+    // y iterates (increasing) over the width, z is fixed
+    for (; y < startPoint + squareSize; ++y)
+    {
+      displayCoord(x, y, z);
+      delay(milli);
+    }
+
+    // draw the second side of the border
+    // y is fixed, z iterates (increasing) over the width
+    for (; z < startPoint + squareSize; ++z)
+    {
+      displayCoord(x, y, z);
+      delay(milli);
+    }
+
+    // draw the third side of the border
+    // y iterates (decreasing) over the width, z is fixed
+    for (; y >= startPoint; --y)
+    {
+      displayCoord(x, y, z);
+      delay(milli);
+    }
+
+    // draw the fourth side of the border
+    // y is fixed, z iterates (decreasing) over the width
+    for (; z < startPoint + squareSize; --z)
+    {
+      displayCoord(x, y, z);
+      delay(milli);
+    }
+
+    //set the new start for the next spiral
+    ++startPoint;
+    y = z = startPoint;
+  }
+
+  if (squareSize == 1)
+  {
+    // one last point for the 1-width square
+    displayCoord(x, y, z);
+    delay(milli);
+  }
+
+}
+
+
 void LeapDraw()  {
     for(int i=0;i<20; i++)  {
     if(coloring[i]==0)
