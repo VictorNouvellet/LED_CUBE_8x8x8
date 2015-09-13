@@ -43,6 +43,7 @@ void loop() {
     AnalyseCommand();
   }
 
+  // ASK : Comment et ou est inclu le commandManager ?
   menu(mode);
 }
 
