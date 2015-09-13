@@ -30,8 +30,11 @@ void menu(int mode)  {
   case 8:
     LeapDraw();
     break;
+  case 9:
+    spiralTest(500, true);
+    break;
   case 10:
-    spiralTest();
+    spiralTest(500, false);
     break;
   default:
     rain(100);
