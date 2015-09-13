@@ -12,7 +12,9 @@ void setup() {
   //Some variables to initialize
   inputString = "";
   lastMessage = "";
+  connexionState = "Connexion...";
   commandComplete = false;
+  dir = 1;
   ledNumber = 0;
   altitude = 3;
   ZSnake = 0;

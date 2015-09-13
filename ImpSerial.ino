@@ -23,7 +23,7 @@ void AnalyseCommand()  {
   }
   //Change Mode
   else if(isDigit(inputString.charAt(0)))  {
-    mode = constrain(inputString.toInt(), 0, 7);
+    mode = constrain(inputString.toInt(), 0, 9);
   }
   //Return led numbers of coloring (obsolet)
   else if(inputString.charAt(0)=='*') {

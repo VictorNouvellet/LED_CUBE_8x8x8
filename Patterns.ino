@@ -11,7 +11,7 @@
 /**
  * Tests all LEDs, x -> y -> z
  */
-void allTest(int milli){
+void allTest(int milli)  {
   for(int z = 0; z < LEDS_PER_ROW; z++){
     for(int y = 0; y < LEDS_PER_ROW; y++){
       for(int x = 0; x < LEDS_PER_ROW; x++){
@@ -20,6 +20,35 @@ void allTest(int milli){
       }
     }
   }
+}
+
+void littleLight(int milli, int noComeback, int bounce)  {
+  int vect = random(3); //x, y or z
+  int way = 1 - 2*random(2); //1 or -1
+  
+  //No comeback
+  while(noComeback && vect*way == -dir)  {
+    vect = random(3);
+    way = 1 - 2*random(2);
+  }
+  dir = vect*way;
+  
+  int border = round(pow(LEDS_PER_ROW,vect));
+  int shift = way*border;
+  int mod = border * LEDS_PER_ROW;
+  int mini = border - 1;
+  int maxi = mod - border;
+  
+  //Smart little code for borders - copyright Victor Nouvellet (victor.nouvellet@gmail.com)
+  if((ledNumber%mod <= mini && way==-1) || (ledNumber%mod >= maxi && way==1))  {
+    ledNumber -= (bounce?1:7)*shift;
+    dir = -dir;
+  }
+  else  {
+    ledNumber += shift;
+  }
+  displayNum(ledNumber);
+  delay(milli);
 }
 
 void LeapDraw()  {

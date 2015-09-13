@@ -1,15 +1,15 @@
 int charToIntPortal(char character)
 {
-  if((character >= '!') && (character <= 'Z'))
-    return (character-'!');
+  if((character >= ' ') && (character <= 'Z'))
+    return (character-' ');
   else if((character == 'é') || (character == 'è'))
-    return 'E' - '!';
+    return ('E' - ' ');
   else if((character == 'ç') || (character == 'Ç'))
-    return 'C' - '!';
+    return ('C' - ' ');
   else if((character >= 'a') && (character <= 'z'))
-    return (character-'a'+('A'-'!'));
+    return (character-'a'+('A'-' '));
   else
-    return ('Z'-'!'+1);
+    return 0;
 }
 
 void displayString(String string, int time) {

@@ -4,7 +4,7 @@ void menu(int mode)  {
     if(lastMessage != "")
       turningDisplayString(lastMessage,90);
     else
-      turningDisplayString("100%",70);
+      turningDisplayString(connexionState, 70);
     break;
   case 1:
     rand(50);
@@ -29,6 +29,9 @@ void menu(int mode)  {
     break;
   case 8:
     LeapDraw();
+    break;
+  case 9:
+    littleLight(10, true, true);
     break;
   default:
     rain(100);
