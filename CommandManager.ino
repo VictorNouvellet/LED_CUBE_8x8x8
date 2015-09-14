@@ -25,7 +25,9 @@ void menu(int mode)  {
     rain(80);
     break;
   case 7:
-    DisplayVumeter();
+    spiralTest(10, true);
+    spiralTest(10, false);
+//    DisplayVumeter();
     break;
   case 8:
     LeapDraw();
