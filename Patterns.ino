@@ -92,7 +92,6 @@ void xSquareBorder(int milli, int xStart, int yStart, int zStart, int squareSize
   }
 }
 
-
 /**
 * @author Touzard Loïc loic.touzard@gmail.com
 *
@@ -155,6 +154,23 @@ void spiralTest(int milli, bool fromOuterToInner) {
       displayCoord(startPoint, startPoint, startPoint);
       delay(milli);
     }
+  }
+}
+
+/**
+* Display all leds at once
+*/
+void allAtOnce() {
+  // The total quantity of LEDS
+  int LEDSnum = LEDS_PER_ROW * LEDS_PER_ROW * LEDS_PER_ROW;
+  // The number of fps required "frame per second"
+  int fps = 60;
+  // The delta between 2 LED display to fit the fps requirements (in micro-second)
+  int deltaLED = 1000000 / (LEDSnum * fps);
+  for (int i = 0; i < (LEDSnum); ++i)
+  {
+    displayNum(i);
+    delayMicroseconds(deltaLED);
   }
 }
 
